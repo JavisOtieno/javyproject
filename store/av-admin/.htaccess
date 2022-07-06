@@ -1,0 +1,98 @@
+RewriteEngine On 
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^promote\.javy\.co.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^javytech\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^castroexpress\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^gdselectronics\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^gerund\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^javis\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^javy\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^kallan\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^tech-on\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^toptechdeals\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^upfront\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^wish\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^kaizen\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^techtronix\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^kujiajir\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^manu\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^suhade\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^kingscomtechnologies\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^mkoposawa\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^techieshub\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} ^starmacstore\.av\.ke [NC]
+RewriteRule .? https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
+
+
+#removing www from the url to allow for ssl certification
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [R=301,QSA,NC,L]
+
+#forcing https
+#RewriteCond %{HTTPS} !on
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+

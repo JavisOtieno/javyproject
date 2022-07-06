@@ -1,0 +1,88 @@
+/* mPopup box style */
+.mpopup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 40px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.mpopup-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 60%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.mpopup-head {
+    padding: 10px 30px;
+    background-color: #0280E1;
+    color: white;
+}
+.mpopup-main {padding: 2px 16px;}
+.mpopup-foot {
+    padding: 2px 16px;
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+/* add animation effects */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* close button style */
+.close {
+    color: white;
+    float: right;
+    vertical-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+#submitOrderForm input[type=textarea],#submitOrderForm input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#submitOrderForm input[type=submit] {
+    width: 100%;
+    background-color: #F44336;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#submitOrderForm input[type=submit]:hover {
+    background-color: #C3352B;
+}
