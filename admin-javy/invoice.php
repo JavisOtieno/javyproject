@@ -22,17 +22,15 @@ $product_price=$row['product_price'];
 $product_name=$row['product_name'];
 
 
-$product_id=$row['product_id'];
-$GLOBALS['product_id']=$product_id;
+$product_or_cart_id=$row['product_id'];
 
 
-if($product_id==0){
+if($product_or_cart_id==0){
 $query_cart="SELECT * FROM cart_items where order_id='$id'";
 
 $query_run_cart=mysqli_query($db_link,$query_cart);
 while($row_cart=mysqli_fetch_assoc($query_run_cart)){
-    $product_id=$row_cart['product_id'];
-    $GLOBALS['product_id']=$product_id;
+    $product_or_cart_id=$row_cart['id'];
 
 }
 }
@@ -262,7 +260,7 @@ if(strlen($GLOBALS['delivery_details'])>44){
 $pdf->Cell(0,10,'                   ',0,1);
 
 $headerTable = array('Quantity', 'Id', 'Product Description', 'Price','Amount');
-$data= array('1', $product_id ,$product_name, number_format($product_price),number_format($product_price));
+$data= array('1', $product_or_cart_id ,$product_name, number_format($product_price),number_format($product_price));
 $pdf->FancyTable($headerTable,$data);
 
 $pdf->Cell(0,10,'                   ',0,1);
