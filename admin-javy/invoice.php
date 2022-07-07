@@ -51,6 +51,12 @@ while($row=mysqli_fetch_assoc($query_run)){
  $GLOBALS['store_name']=ucfirst($row['storename']);
  $storename=$row['storename'];
  $promoter_phone=$row['phone'];
+ if($storename=='javytech'){
+    $GLOBALS['website']=$storename.'.co.ke';
+ }else{
+    $GLOBALS['website']=$storename.'.av.ke';
+ }
+ 
  
 
 }
