@@ -71,7 +71,12 @@ function Header()
     //set border color to red
     $this->SetDrawColor(255,255,255);
     // Title
-    $this->SetTextColor(255,0,0);
+    
+    if($GLOBALS['store_name']=="Javytech"){
+       $this->SetTextColor(47,80,156);
+    }else{
+        $this->SetTextColor(255,0,0);
+    }
 
     $this->Cell(0,0,$GLOBALS['store_name'],0,0,'L');
         $this->SetX($this->lMargin);
@@ -84,7 +89,7 @@ function Header()
     $this->Ln(10);
     $this->SetFont('Arial','B',10);
     $this->SetTextColor(0,0,0);
-    $this->Cell(0,0,' Online Store : www.'.strtolower($GLOBALS['store_name']).'.av.ke',1,0);
+    $this->Cell(0,0,' Online Store : www.'.$GLOBALS['website'],1,0);
     $this->Ln(5);
     $this->Cell(0,0,' Electronics and many more products',1,0);
     $this->Ln(10);
@@ -106,9 +111,20 @@ function FancyTable($header, $data)
 
     
     // Colors, line width and bold font
-    $this->SetFillColor(255,0,0);
+    if($GLOBALS['store_name']=="Javytech"){
+       $this->SetFillColor(47,80,156); 
+    }else{
+        $this->SetFillColor(255,0,0);
+    }
+    
+    
     $this->SetTextColor(255);
-    $this->SetDrawColor(128,0,0);
+    
+    if($GLOBALS['store_name']=="Javytech"){
+       $this->SetDrawColor(14,24,26); 
+    }else{
+        $this->SetDrawColor(128,0,0);
+    }
     $this->SetLineWidth(.3);
     $this->SetFont('','B');
     // Header
@@ -121,7 +137,14 @@ function FancyTable($header, $data)
     $this->SetTextColor(0);
     $this->SetFont('');
     // Data
-    $this->SetFillColor(255,204,203);
+    
+    if($GLOBALS['store_name']=="Javytech"){
+       $this->SetFillColor(171,185,215); 
+    }else{
+        $this->SetFillColor(255,204,203);
+    }
+
+
     $fill = false;
 
 //checks if data length is more than 52
@@ -267,7 +290,7 @@ $pdf->Cell(0,10,'                   ',0,1);
 $pdf->Cell(0,10,'                   ',0,1);
 
 $pdf->Cell(0,5,'Thank you for your business! ',0,1,'C');
-$pdf->Cell(0,5,'Visit our Website:  www.'.$storename.'.av.ke',0,1,'C');
+$pdf->Cell(0,5,'Visit our Website:  www.'.$GLOBALS['website'],0,1,'C');
 $pdf->Cell(0,5,'Contact us on '.$promoter_phone,0,1,'C');
 
 ?>
