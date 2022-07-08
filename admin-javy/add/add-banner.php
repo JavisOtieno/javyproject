@@ -1,7 +1,6 @@
 <?php include '../header.php'; 
 
 	echo '<br>';
-	x
 	echo '<form method="GET" action="../submit/submit-banner.php" id="submitBannerForm">';
 
     echo '<div class="row"><div class="col-md-6"><div style="margin-left:20px;">';
