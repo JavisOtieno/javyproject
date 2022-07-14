@@ -175,7 +175,7 @@ else{
            <?php if($userId == 1) {
             //nothing here yet
            }
-
+    echo '<a class="dropdown-item" href="'.$folder_up.'add/add-enquiry.php">Enquiry</a>';
     echo '<a class="dropdown-item" href="'.$folder_up.'add/add-order.php">Order</a>';
     echo '<a class="dropdown-item" href="'.$folder_up.'add/add-product.php">Product</a>';
     ?>
