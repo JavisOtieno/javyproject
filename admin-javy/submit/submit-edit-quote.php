@@ -42,7 +42,6 @@ $sql="UPDATE `quotes` SET name='$name',phone='$phone',email='$email',address='$a
 if($connect->query($sql)){
 
 
-
     $valid['success'] = true;
     $valid['messages'] = "Quote Successfully Edited.";
     

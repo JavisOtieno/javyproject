@@ -24,7 +24,6 @@ if(isset($_GET['productPrice'])){
 $productPrice=$_GET['productPrice'];
 }
 
-
 if(isset($_GET['shopId'])){
 $dealerID=$_GET['shopId'];
 }
