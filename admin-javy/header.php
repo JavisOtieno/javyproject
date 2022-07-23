@@ -102,7 +102,7 @@ else{
 
       <li class="nav-item dropdown">
        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Messages & Email
+          Messages, Email & More
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="'.$folder_up.'product-messages.php">Product Messages</a>
@@ -119,6 +119,9 @@ else{
           <a class="dropdown-item" href="'.$folder_up.'newsletter-products.php">Newsletter Products</a>
 
           <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="'.$folder_up.'enquiries.php">Enquiries</a>
+          <a class="dropdown-item" href="'.$folder_up.'job-cards.php">Job Cards</a>
+          <a class="dropdown-item" href="'.$folder_up.'quotes.php">Quotes</a>
         </div>
       </li>';
     }
@@ -178,6 +181,8 @@ else{
     echo '<a class="dropdown-item" href="'.$folder_up.'add/add-enquiry.php">Enquiry</a>';
     echo '<a class="dropdown-item" href="'.$folder_up.'add/add-order.php">Order</a>';
     echo '<a class="dropdown-item" href="'.$folder_up.'add/add-product.php">Product</a>';
+    echo '<a class="dropdown-item" href="'.$folder_up.'add/add-job-card.php">Job Card</a>';
+    echo '<a class="dropdown-item" href="'.$folder_up.'add/add-quote.php">Quote</a>';
     ?>
           
            <?php if($userId == 1) {

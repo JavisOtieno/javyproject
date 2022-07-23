@@ -28,7 +28,7 @@ if($connect->query($sql)){
 
 
     $valid['success'] = true;
-    $valid['messages'] = "Brand Successfully Added";        
+    $valid['messages'] = "Enquiry Successfully Added";        
 
 }
 else{
