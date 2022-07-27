@@ -53,7 +53,7 @@ while($row_job_cards=mysqli_fetch_assoc($query_run_job_cards)){
 <td>'.$row_job_cards['phone'].'</td>
 <td>'.$row_job_cards['email'].'</td>
 <td><a href="edit/edit-job-card.php?id='.$row_job_cards['id'].'"><button>edit</button></a></td>
-<td><a href="document.php?id='.$row_job_cards['id'].'&type=job_card"><button>View Doc</button></a></td>
+<td><a href="view-document.php?id='.$row_job_cards['id'].'&type=job_card"><button>View Doc</button></a></td>
 
 </tr>';
 

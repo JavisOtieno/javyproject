@@ -31,6 +31,8 @@ $dealerID=$_GET['shopId'];
 
 $date=time();
 
+$datetimestamp = date("Y-m-d H:i:s"); 
+
         //echo $slug.'<br/>';
 //phone and email check on customers
 
@@ -65,7 +67,7 @@ else{
 }
 
 
-$sql="INSERT INTO `job_cards` VALUES(NULL,'$customerName','$customerPhone','$customerEmail','$customerAddress','$dealerID','$customer_id',404,'$productName','$productPrice')";
+$sql="INSERT INTO `job_cards` VALUES(NULL,'$datetimestamp','$datetimestamp','$customerName','$customerPhone','$customerEmail','$customerAddress','$dealerID','$customer_id',404,'$productName','$productPrice')";
 
 
 

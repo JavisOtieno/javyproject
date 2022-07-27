@@ -53,7 +53,7 @@ while($row_quote=mysqli_fetch_assoc($query_run_quotes)){
 <td>'.$row_quote['phone'].'</td>
 <td>'.$row_quote['email'].'</td>
 <td><a href="edit/edit-quote.php?id='.$row_quote['id'].'"><button>edit</button></a></td>
-<td><a href="document.php?id='.$row_quote['id'].'&type=quote"><button>View Doc</button></a></td>
+<td><a href="view-document.php?id='.$row_quote['id'].'&type=quote"><button>View Doc</button></a></td>
 
 </tr>';
 

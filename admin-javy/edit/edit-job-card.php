@@ -52,15 +52,10 @@ if($row=mysqli_fetch_assoc($query_run)){
 
 
 
-  echo '</div></div';
+  echo '</div></div>';
 
 
-
-
-
-
-
-    echo '<div id="messages"></div></div></div>
+    echo '<div id="messages" style="margin-left:20px;"></div>
     </div>';
 
     	echo '<input style="background-color: #4CAF50;
@@ -76,13 +71,24 @@ if($row=mysqli_fetch_assoc($query_run)){
     cursor: pointer;" type="submit" value="UPDATE"/></form>';
 
 
+          echo '<button style="background-color: #FF9900;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    display:inline-block;
+    margin-left:20px;
+    cursor: pointer; " onclick="sendDocument('.$id.')">Send Job Card to Email</button>';
+
+
 
 
 }
 
-
-
-}
+if($userId == 1){
 
     echo '<a href="../delete/delete-job-card.php?id='.$id.'" ><button style="background-color: #FF0000;
     border: none;
@@ -95,6 +101,12 @@ if($row=mysqli_fetch_assoc($query_run)){
     margin-left: 20px;
 
     cursor: pointer;">Delete Job Card</button></a>';
+
+  }
+
+}
+
+
 
 
 
@@ -142,8 +154,10 @@ $("#editJobCardForm").unbind('submit').bind('submit',function(){
             
 
               $("#messages").html('<div class="alert alert-success alert-dismissible" role="alert">'+
-  '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+response.messages+
-'</div>');
+                '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+response.messages+
+                '</div>');
+
+              //alert(response.messages);
 
               //remove the messages after 10 seconds
 
@@ -171,8 +185,10 @@ $("#editJobCardForm").unbind('submit').bind('submit',function(){
               //reset the form text
             
               $("#messages").html('<div class="alert alert-danger alert-dismissible" role="alert">'+
-  '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+response.messages+
-'</div>');
+                '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+response.messages+'</div>');
+
+              //alert(response.messages);
+
 
               //remove the messages after 10 seconds
               
@@ -190,4 +206,41 @@ $("#editJobCardForm").unbind('submit').bind('submit',function(){
     });//submit categories form function
 
 });
+</script>
+
+<script type="text/javascript">
+  function sendDocument(id) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+   //  document.getElementById("success-messages").innerHTML = this.response;
+   var object = JSON.parse(this.responseText);
+
+     if(object.success==true){
+
+      $("#messages").html('<div class="alert alert-success">'+
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+                '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ object.messages +                                                
+               '</div>');
+
+    setTimeout(function () {
+       window.location.href = "../edit/edit-job-card.php?id="+id;
+    }, 2000);
+    
+     }else{
+
+      $("#messages").html('<div class="alert alert-danger">'+
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+                '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ object.messages +                                                
+               '</div>');
+     }
+
+    }
+  };
+  xhttp.open("GET", "../send-document.php?id="+id+"&type=job_card", true);
+  xhttp.send();
+
+  
+}
+
 </script>

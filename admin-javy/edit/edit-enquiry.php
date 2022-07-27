@@ -60,9 +60,7 @@ if($row=mysqli_fetch_assoc($query_run)){
 
 }
 
-
-
-}
+if($userId == 1){
 
     echo '<a href="../delete/delete-enquiry.php?id='.$id.'" ><button style="background-color: #FF0000;
     border: none;
@@ -75,6 +73,14 @@ if($row=mysqli_fetch_assoc($query_run)){
     margin-left: 20px;
 
     cursor: pointer;">Delete Enquiry</button></a>';
+
+  }
+
+
+
+}
+
+
 
 
 
