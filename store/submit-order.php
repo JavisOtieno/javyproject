@@ -3,6 +3,7 @@
 require('connect.inc.php');
 require('subdomain_storename.php');
 require("email-sendgrid/sendgrid-php.php"); 
+require_once('AfricasTalkingGateway.php');
 
 //setting session
 session_start();
@@ -134,6 +135,7 @@ if($row=mysqli_fetch_assoc($query_run)){
 	$dealer_id=$row['user_id'];
 	$firstname=$row['firstname'];
 	$promoter_email=$row['email'];
+	$promoter_phone=$row['phone'];
 }
 
 
@@ -295,6 +297,73 @@ mail($to, $subject, $message, $headers);
 				     //print $response->body() . "\n";
 				} catch (Exception $e) {
 				    //echo 'Caught exception: ',  $e->getMessage(), "\n";
+				}
+
+
+				
+				// Specify your authentication credentials
+				$username   = "Javisotieno";
+				$apikey     = "fc8597cbed40cda6a2e7651458aa02b44b5a0a2c148557b39d371e1efe28d6af";
+				// Specify the numbers that you want to send to in a comma-separated list
+				// Please ensure you include the country code (+254 for Kenya in this case)
+
+
+
+				function formatPhoneNumber($phone){
+					$firstdigit=substr($phone, 0, 1);
+
+				if($firstdigit=='0'){
+				  $recipient = "+254".substr($phone,1);
+				}elseif($firstdigit=='7'){
+				  $recipient= "+254".$phone;
+				}elseif($firstdigit=='2'){
+				  $recipient = "+".$phone;
+				}elseif($firstdigit=="+"){
+				  $recipient = $phone;
+				}
+				return $recipient;
+				}
+
+				$recipient_customer = formatPhoneNumber($phone_number);
+				$recipient_promoter = formatPhoneNumber($promoter_phone);
+
+				//$recipients = "+254707641174,+254733YYYZZZ";
+
+				// And of course we want our recipients to know what we really do
+				$message_customer    = "Your order on www.".$storename.".av.ke for the ".$product_name." has been received. We will contact you shortly to process the order";
+
+				$message_promoter    = "Order received on www.".$storename.".av.ke for the ".$product_name." has been received. Customer contact: ".$phone_number." - Javy Helpline: 0716 545459";
+
+				$gateway    = new AfricasTalkingGateway($username, $apikey);
+
+				$from = "JAVY";
+
+				try 
+				{ 
+				  // Thats it, hit send and we'll take care of the rest. 
+				  $results_promoter = $gateway->sendMessage($recipient_promoter, $message_promoter, $from);
+				            
+				  foreach($results_promoter as $result) {
+				    // status is either "Success" or "error message"
+				    //echo " Number: " .$result->number;
+				    //echo " Status: " .$result->status;
+				    //echo " MessageId: " .$result->messageId;
+				    //echo " Cost: "   .$result->cost."\n";
+				  }
+				   // Thats it, hit send and we'll take care of the rest. 
+				  $results_customer = $gateway->sendMessage($recipient_customer, $message_customer, $from);
+				            
+				  foreach($results_customer as $result) {
+				    // status is either "Success" or "error message"
+				    //echo " Number: " .$result->number;
+				    //echo " Status: " .$result->status;
+				    //echo " MessageId: " .$result->messageId;
+				    //echo " Cost: "   .$result->cost."\n";
+				  }
+				}
+				catch ( AfricasTalkingGatewayException $e )
+				{
+				  //echo "Encountered an error while sending: ".$e->getMessage();
 				}
 
 

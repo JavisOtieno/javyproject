@@ -114,7 +114,7 @@ if($_POST) {
 
 			$time=time();
 
-			$mainSql = "INSERT INTO users VALUES (NULL,'$storename','$password','$email','$phonenumber','$firstname','$lastname',1,'$time','$supplier_id','','','',0,'$random_hash','',0,$shop_type,'','',0,'','')";
+			$mainSql = "INSERT INTO users VALUES (NULL,'$storename','$password','$email','$phonenumber','$firstname','$lastname',1,'$time','$supplier_id','','','',0,0,'$random_hash','',0,$shop_type,'','',0,'','')";
 
 			
 			//$mainSql = "SELECT * FROM users WHERE username = '$storename' AND password = '$password'";
@@ -187,52 +187,64 @@ if($_POST) {
 
 
 
-				// Be sure to include the file you've just downloaded
-require_once('AfricasTalkingGateway.php');
-// Specify your authentication credentials
-$username   = "Javisotieno";
-$apikey     = "fc8597cbed40cda6a2e7651458aa02b44b5a0a2c148557b39d371e1efe28d6af";
-// Specify the numbers that you want to send to in a comma-separated list
-// Please ensure you include the country code (+254 for Kenya in this case)
-$firstdigit=substr($phonenumber, 0, 1);
+								// Be sure to include the file you've just downloaded
+				require_once('AfricasTalkingGateway.php');
+				// Specify your authentication credentials
+				$username   = "Javisotieno";
+				$apikey     = "fc8597cbed40cda6a2e7651458aa02b44b5a0a2c148557b39d371e1efe28d6af";
+				// Specify the numbers that you want to send to in a comma-separated list
+				// Please ensure you include the country code (+254 for Kenya in this case)
+				$firstdigit=substr($phonenumber, 0, 1);
 
 
-if($firstdigit=='0'){
-	$recipients = "+254".substr($phonenumber,1);
-}elseif($firstdigit=='7'){
-	$recipients = "+254".$phonenumber;
-}elseif($firstdigit=='2'){
-	$recipients = "+".$phonenumber;
-}elseif($firstdigit=="+"){
-	$recipients = $phonenumber;
-}
+				if($firstdigit=='0'){
+					$recipients = "+254".substr($phonenumber,1);
+				}elseif($firstdigit=='7'){
+					$recipients = "+254".$phonenumber;
+				}elseif($firstdigit=='2'){
+					$recipients = "+".$phonenumber;
+				}elseif($firstdigit=="+"){
+					$recipients = $phonenumber;
+				}
 
-//$recipients = "+254707641174,+254733YYYZZZ";
+				//$recipients = "+254707641174,+254733YYYZZZ";
 
-// And of course we want our recipients to know what we really do
-$message    = "JAVY : $firstname, welcome to Javy. www.".$storename.".av.ke is ready. Login to http://promote.javy.co.ke to manage your account. Our contact:0716545459";
+				// And of course we want our recipients to know what we really do
+				//$message    = "JAVY : $firstname, welcome to Javy. www.".$storename.".av.ke is ready. Login to http://promote.javy.co.ke to manage your account. Our contact:0716545459";
+				$code = rand(100000,999999);
 
-$gateway    = new AfricasTalkingGateway($username, $apikey);
+				$message_promoter = $code." is your verification code.";
 
-$from = "JAVY";
+				$codeSql = "INSERT INTO phone_verification_codes VALUES (NULL,NULL,NULL,'$user_id','$code',0)";
 
-try 
-{ 
-  // Thats it, hit send and we'll take care of the rest. 
-  $results = $gateway->sendMessage($recipients, $message, $from);
-            
-  foreach($results as $result) {
-    // status is either "Success" or "error message"
-    //echo " Number: " .$result->number;
-    //echo " Status: " .$result->status;
-    //echo " MessageId: " .$result->messageId;
-    //echo " Cost: "   .$result->cost."\n";
-  }
-}
-catch ( AfricasTalkingGatewayException $e )
-{
-  //echo "Encountered an error while sending: ".$e->getMessage();
-}
+			
+			//$mainSql = "SELECT * FROM users WHERE username = '$storename' AND password = '$password'";
+			
+				if($codeResult = $connect->query($codeSql)) {
+					//do nothing for now
+				}
+
+				$gateway    = new AfricasTalkingGateway($username, $apikey);
+
+				$from = "JAVY";
+
+				try 
+				{ 
+				  // Thats it, hit send and we'll take care of the rest. 
+				  $results = $gateway->sendMessage($recipients, $message_promoter, $from);
+				            
+				  foreach($results as $result) {
+				    // status is either "Success" or "error message"
+				    //echo " Number: " .$result->number;
+				    //echo " Status: " .$result->status;
+				    //echo " MessageId: " .$result->messageId;
+				    //echo " Cost: "   .$result->cost."\n";
+				  }
+				}
+				catch ( AfricasTalkingGatewayException $e )
+				{
+				  //echo "Encountered an error while sending: ".$e->getMessage();
+				}
 
 
 
@@ -244,7 +256,7 @@ catch ( AfricasTalkingGatewayException $e )
 				$_SESSION['userId'] = $user_id;
 
 				
-				header('location: dashboard.php');	
+				header('location: verify-phone.php');	
 
 			} else{
 				
@@ -328,8 +340,6 @@ catch ( AfricasTalkingGatewayException $e )
 			}
 			else{
 				echo '<h1><a href=http://'.$host.' style="display: inline-block;color: #000;text-decoration: none;position: relative;font-weight: 700;" >Back to <span style="font-size: 1.7em;color: #F44336;vertical-align: sub;margin-right: 3px;">'.strtoupper(substr($storename, 0, 1)).'</span>'.substr($storename,1,mb_strlen($storename)-1).'</a></h1>';
-
-
 			} 
 
 			?>

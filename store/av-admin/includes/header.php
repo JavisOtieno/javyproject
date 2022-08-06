@@ -1,9 +1,4 @@
 <?php require_once 'php_action/core.php'; ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-
 <?php 
 $sqlusers ="SELECT * FROM users WHERE user_id = $userId";
 $userResult=$connect->query($sqlusers);
@@ -21,6 +16,12 @@ if($co_ke){
   $website_ke='.av.ke';
 }
 
+$phone_verification_status=$storeResult['phone_verification_status'];
+
+if($phone_verification_status==0 && $userId>62010){
+  header('location: verify-phone.php');  
+}
+
 
 $sql_supplier_registered_under ="SELECT * FROM suppliers WHERE id = $supplier_id";
 $supplierResult=$connect->query($sql_supplier_registered_under);
@@ -31,6 +32,12 @@ $supplier_username=ucfirst($supplierResult['username']);
 date_default_timezone_set("Africa/Nairobi");
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
 
 	<title>Javy | Storename : <?php echo ucfirst($storename); ?></title>
 	
