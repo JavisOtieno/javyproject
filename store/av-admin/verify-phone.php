@@ -2,6 +2,11 @@
 require_once 'php_action/core.php';
 require_once '../subdomain_storename.php';
 
+$sqlusers ="SELECT * FROM users WHERE user_id = $userId";
+$userResult=$connect->query($sqlusers);
+$storeResult=$userResult->fetch_assoc();
+$phone=$storeResult['phone'];
+
 
 $errors = array();
 
@@ -151,8 +156,10 @@ if($_POST) {
 
 						<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'].'?page='.$requested_page ?>" method="post" id="loginForm">
 							<fieldset>
+									<h5 style="text-align: center;">Verification code sent to <?php echo $phone ?></h5>
+								
 							  <div class="form-group">
-									<label for="code" class="col-sm-5 control-label">Code</label>
+									<label for="code" class="col-sm-5 control-label">Enter Code</label>
 									<div class="col-sm-7">
 									  <input type="text" class="form-control" id="code" name="code" placeholder="Code" autocomplete="off" value="<?php echo isset($_POST['']) ? $_POST['code'] : '' ?>" />
 									</div>
