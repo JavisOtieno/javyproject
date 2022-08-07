@@ -411,7 +411,7 @@ only screen and (max-width: 550px),(max-device-width: 550px)  {
 						<th>Profit</th>
 						<th>Status</th>
 						<th>Options</th>
-						<th>Cancel</th>
+						<th>Actions</th>
 							
 						</tr>
 					</thead>
@@ -487,6 +487,8 @@ only screen and (max-width: 550px),(max-device-width: 550px)  {
 								echo '<td>'.$button.'</td>';
 								if($row['status']==0){
 									echo '<td><a href="php_action/cancel-order.php?orderId='.$deal_id.'"><button type="button" class="btn btn-danger">Cancel</button></a></td>';
+								}else if($row['status']==1){
+									echo '<td><a href="view-invoice.php?id='.$deal_id.'"><button type="button" class="btn btn-success">View Invoice</button></a></td>';
 								}else{
 									echo ' ';
 								}

@@ -2,5 +2,4 @@
 require('invoice.php');
 
 $pdf->Output();
-
 ?>
